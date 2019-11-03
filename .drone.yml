@@ -7,6 +7,7 @@ steps:
   image: node:8.16.2-alpine
   commands:
   - npm install -g create-react-app
+  - npm install
   - npm run build
 
 - name: react-deploy

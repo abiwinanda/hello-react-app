@@ -1,0 +1,27 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: react-build
+  image: node/8.16.2-alpine
+  commands:
+  - npm install -g create-react-app
+  - npm run build
+
+- name: react-deploy
+  image: plugins/s3
+  settings:
+    bucket: hello-world-react
+    access_key:
+      from_secret: aws_access_key_id
+    secret_key:
+      from_secret: aws_secret_access_key
+    source: build/*
+    target: /
+
+trigger:
+  event:
+  - push
+  branch:
+  - master

@@ -4,7 +4,7 @@ name: default
 
 steps:
 - name: react-build
-  image: node/8.16.2-alpine
+  image: node:8.16.2-alpine
   commands:
   - npm install -g create-react-app
   - npm run build
